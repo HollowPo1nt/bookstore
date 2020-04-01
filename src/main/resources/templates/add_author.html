@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <title>Add Author</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/books">Bookshop</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/genres">Books by genres</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/authors">Books by author</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/orders">Orders</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="mt-5">
+        <h4 class="">Fill all fields</h4>
+        <form
+          class="my-3"
+          th:action="@{/authors/add}"
+          method="post"
+          th:object="${author}"
+        >
+          <div class="form-group">
+            <div class="col-md-3">
+              <label for="name">Name</label>
+              <input
+                id="name"
+                th:field="*{name}"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary m-3">
+              Create author
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

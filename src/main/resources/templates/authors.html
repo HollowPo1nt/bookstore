@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Authors</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/books">Bookshop</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/genres">Books by genres</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/authors">Books by author</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/orders">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/authors/add">Add author</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="card-columns">
+        <div class="card my-3" th:each="author : ${authors}">
+          <div class="m-2">
+            <a th:href="@{books/byAuthor/(authorId=${author.id})}"
+              >[[${author.name}]]
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="container">
+      <div class="form-group col-md-6 mt-5">
+        <form method="get" action="/main" class="form-inline">
+          <input
+            type="text"
+            name="filter"
+            class="form-control"
+            value="${filter?ifExists}"
+            placeholder="Search by tag"
+          />
+          <button type="submit" class="btn btn-primary ml-2">Search</button>
+        </form>
+      </div>
+    </div> -->
+
+    <!-- <div class="form-row">
+      <div class="form-group col-md-6">
+        <form method="get" action="/main" class="form-inline">
+          <input
+            type="text"
+            name="filter"
+            class="form-control"
+            value="${filter?ifExists}"
+            placeholder="Search by tag"
+          />
+          <button type="submit" class="btn btn-primary ml-2">Search</button>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="card-columns">
+        <#list books as book>
+        <div class="card my-3">
+            </#if>
+            <div class="m-2">
+                <span>${book.title}</span>
+                <i>${book.authors}</i>
+            </div>
+            <div class="card-footer text-muted">
+                ${book.description}
+            </div>
+        </div> -->
+  </body>
+</html>

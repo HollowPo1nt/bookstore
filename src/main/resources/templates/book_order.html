@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Order</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/books">Bookshop</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/genres">Books by genres</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/authors">Books by author</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/orders">Orders</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="card-columns">
+        <div class="card my-3">
+          <div class="m-2 d-flex flex-column">
+            <span th:text="${book.title}"></span>
+            <span th:text="${book.price}"></span>
+            <div th:each="author : ${authors}">
+              <span>[[${author.name}]]</span>
+            </div>
+            <div th:each="genre : ${genres}">
+              <span>[[${genre.name}]]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5">
+        <form
+          class="my-3"
+          th:action="@{/orders/}"
+          method="post"
+          th:object="${order}"
+        >
+          <div class="form-group">
+            <div class="col-md-3 my-1">
+              <label for="firstName">First name</label>
+              <input
+                id="firstName"
+                th:field="*{userFirstName}"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-md-3 my-1">
+              <label for="lastName">Last name</label>
+              <input
+                id="lastName"
+                th:field="*{userLastName}"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-md-3 my-1">
+              <label for="address">Address</label>
+              <input
+                id="address"
+                th:field="*{address}"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-md-3 my-1">
+              <label for="quantity">Quantity</label>
+              <input
+                id="quantity"
+                th:field="*{quantity}"
+                type="number"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary m-3">Order</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

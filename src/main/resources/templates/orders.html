@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>Orders</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/books">Bookshop</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/genres">Books by genres</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/authors">Books by author</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/orders">Orders</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="card-columns">
+        <div class="card my-3 " th:each="order : ${orders}">
+          <div class="m-2 d-flex flex-column">
+            <span th:text="${order.userFirstName}"> </span>
+
+            <span th:text="${order.userLastName}"> </span>
+
+            <span th:text="${order.address}"> </span>
+
+            <span th:text="${order.quantity}"> </span>
+
+            <!-- <span th:text="${order.book.getTitle()}"> </span> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
