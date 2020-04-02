@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
@@ -35,7 +36,7 @@ public class BookController {
         this.genreService = genreService;
     }
 
-    @GetMapping("/books")
+    @GetMapping(value = {"/books", "/"})
     public String getBooks(Model model) {
         List<Book> list = bookService.list();
         log.info("Get books: {}", list);
@@ -44,7 +45,7 @@ public class BookController {
     }
 
     @GetMapping("/books/add")
-    public String addBookPage(Model model) throws ResourceNotFoundException {
+    public String addBookPage(Model model) {
         List<Genre> genres = genreService.list();
         List<Author> authors = authorService.list();
         model.addAttribute("authors", authors);

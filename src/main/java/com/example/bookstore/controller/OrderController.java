@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -43,7 +44,7 @@ public class OrderController {
     public String newOrder(@Valid Order order, Model model) {
         Order saved = orderService.create(order);
         log.info("Post order: {}", saved);
-        return "redirect:/orders";
+        return "redirect:/books";
     }
 
 
