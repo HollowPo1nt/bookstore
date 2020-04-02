@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/orders/**").permitAll()
                 .antMatchers("/", "/books", "/books/order", "/books/byGenre/", "/books/byAuthor/", "/genres", "/authors", "/orders").permitAll()
-                .antMatchers("/books/add/**", "/genres/add/**", "/authors/add/**", "/orders").hasRole("ADMIN")
+                .antMatchers("/books/add/**", "/books/edit/**", "/genres/add/**", "/authors/add/**", "/orders").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

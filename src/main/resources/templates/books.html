@@ -38,6 +38,7 @@
       <div class="card-columns">
         <div class="card my-3" th:each="book : ${books}">
           <div class="m-2 d-flex flex-column">
+            <a th:href="@{/books/edit(bookId=${book.id})}">Edit</a>
             <a th:href="@{/books/order(bookId=${book.id})}"
               >[[${book.title}]]
             </a>

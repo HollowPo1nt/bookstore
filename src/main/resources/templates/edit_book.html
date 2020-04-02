@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <title>Edit Book</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/books">Bookshop</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/genres">Books by genres</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/authors">Books by author</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/books/add">Add book</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/genres/add">Add genre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/authors/add">Add author</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="mt-5">
+        <h3>Edit book</h3>
+        <form
+          class="my-3"
+          th:action="@{/books/edit}"
+          method="post"
+          th:object="${book}"
+        >
+          <div class="form-group">
+            <div class="col-md-3">
+              <label for="title">Title</label>
+              <input
+                id="title"
+                th:field="*{title}"
+                th:value="${book.title}"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                th:field="*{description}"
+                th:value="${book.description}"
+                type="text"
+                class="form-control"
+              ></textarea>
+            </div>
+
+            <div class="col-md-2">
+              <label for="price">Price</label>
+              <input
+                id="price"
+                th:field="*{price}"
+                th:value="${book.price}"
+                type="number"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <div class="col-md-2">
+              <h5>Genres:</h5>
+              <select
+                th:field="${book.genres}"
+                class="custom-select custom-select-sm"
+                required
+                multiple="multiple"
+              >
+                <option
+                  th:each="genre : ${genres}"
+                  th:value="${{genre}}"
+                  th:selected="${bookGenres.contains(genre)}"
+                  th:text="${genre.name}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="col-md-2">
+              <h5>Authors:</h5>
+              <select
+                th:field="${book.authors}"
+                class="custom-select custom-select-sm"
+                required
+                multiple="multiple"
+              >
+                <option
+                  th:each="author : ${authors}"
+                  th:value="${{author}}"
+                  th:selected="${bookGenres.contains(author)}"
+                  th:text="${author.name}"
+                ></option>
+              </select>
+            </div>
+          </div>
+          <input type="hidden" th:field="*{id}" />
+          <button class="btn btn-primary m-3" type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

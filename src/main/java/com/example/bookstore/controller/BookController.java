@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
@@ -100,4 +99,24 @@ public class BookController {
         log.info("Get orderPage for book: {}", book);
         return "book_order";
     }
+
+    @GetMapping("/books/edit")
+    public String editBook(@RequestParam Integer bookId, Model model) throws ResourceNotFoundException {
+        Book book = bookService.get(bookId);
+        model.addAttribute("book", book);
+        model.addAttribute("genres", genreService.list());
+        model.addAttribute("authors", authorService.list());
+        model.addAttribute("bookGenres", book.getGenres());
+        model.addAttribute("bookAuthors", book.getAuthors());
+        log.info("GET bookEdit page for bookId {}", bookId);
+        return "edit_book";
+    }
+
+    @PostMapping("/books/edit")
+    public String processBookEditing(@Valid Book book) throws ResourceNotFoundException {
+        Book updated = bookService.update(book, book.getId());
+        log.info("Update book {}", updated);
+        return "redirect:/books";
+    }
+
 }
